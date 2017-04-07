@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="core.js" ></script>
+    <script src="enc-base64.js" ></script>
+    <script src="hmac.js" ></script>
+    <script src="sha256.js" ></script>
+
+    <script>
+
+        function getBase64Encoded(rawStr)
+        {
+            var wordArray= CryptoJS.enc.Utf8.parse(rawStr);
+            var result=CryptoJS.enc.Base64.stringify(wordArray);
+                return result;
+        }
+
+        function getBase64Decoded(encodedStr)
+        {
+            var wordArray= CryptoJS.enc.Base64.parse(encodedStr);
+            var result= wordArray.toString(CryptoJS.enc.Utf8);
+            return result;
+        }
+
+        function doEncode(){
+            var txtEncode= document.getElementById('txtEncode');
+            var txtResultE= document.getElementById('txtResultE');
+            txtResultE.innerHTML=getBase64Encoded(txtEncode.value);
+
+        }
+
+
+        function doDecode(){
+            var txtDecode= document.getElementById('txtDecode');
+            var txtResultD= document.getElementById('txtResultD');
+            txtResultD.innerHTML=getBase64Decoded(txtDecode.value);
+
+        }
+    </script>
+
+</head>
+
+<body>
+<h1 style="text-align: center" >Encode Decode function</h1>
+<hr>
+    <table>
+        <tr>
+            <td>String to base64 endode :</td>
+            <td> <input type="text" id="txtEncode"></td>
+            <td> <button onclick="doEncode()" >Encode</button></td>
+        </tr>
+        <tr>
+            <td> Result :</td>
+             <td> <span id="txtResultE"></span></td>
+            </tr>
+    </table>
+    <hr>
+
+
+    <table>
+        <tr>
+            <td> base64 to String  DeCode :</td>
+            <td> <input type="text" id="txtDecode"></td>
+            <td> <button onclick="doDecode()" >Decode</button></td>
+        </tr>
+        <tr>
+            <td> Result :</td>
+            <td> <span id="txtResultD"></span></td>
+        </tr>
+    </table>
+<hr>
+<table>
+    <tr>
+        <td>Header</td>
+        <td><input type="text" id="headerTxt" ></td>
+    </tr>
+
+</table>
+
+
+
+</body>
+</html>
